@@ -10,7 +10,8 @@ func TestGetForecast(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{
+
+		if _, err := w.Write([]byte(`{
 			"latitude": 1,
 			"longitude": 2,
 			"current": {
@@ -18,7 +19,9 @@ func TestGetForecast(t *testing.T) {
 				"temperature_2m": 12.5,
 				"wind_speed_10m": 5.4
 			}
-		}`))
+		}`)); err != nil {
+			t.Fatalf("write response: %v", err)
+		}
 	}))
 	defer server.Close()
 
