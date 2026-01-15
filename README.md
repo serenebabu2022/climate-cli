@@ -31,37 +31,41 @@ git clone https://github.com/serenebabu2022/climate-cli.git
 cd climate-cli
 ```
 
-Run Locally
+## Run Locally
 
 Show available commands:
 
 go run . --help
 
-Fetch current conditions
+### Fetch current conditions
 
 Defaults to Dublin coordinates if no flags are provided.
 
 go run . forecast --lat 53.3498 --lon -6.2603
 
 Example Output (truncated)
-{
-"latitude": 53.35,
-"longitude": -6.26,
-"current": {
-"time": "2024-01-01T00:00",
-"temperature_2m": 12.5,
-"wind_speed_10m": 5.4
-}
-}
 
-Development
-Run tests
+```json
+{
+  "latitude": 53.35,
+  "longitude": -6.26,
+  "current": {
+    "time": "2024-01-01T00:00",
+    "temperature_2m": 12.5,
+    "wind_speed_10m": 5.4
+  }
+}
+```
+
+## Run tests
+
 go test ./...
 
-Run tests with coverage
+### Run tests with coverage
+
 go test ./... -cover
 
-Lint (optional locally)
+## Lint (optional locally)
 
 If you have golangci-lint installed:
 
@@ -69,15 +73,18 @@ golangci-lint run
 
 Linting and tests are automatically run on every push and pull request via GitHub Actions.
 
-Project Structure
+## Project Structure
+
+```text
 .
 ├── cmd/ # Cobra commands (CLI entrypoints)
 ├── internal/api/ # API client and unit tests
 ├── main.go # CLI root
 └── .github/workflows/ # GitHub Actions CI configuration
+```
 
-Notes
+## Notes
 
-Data is fetched from the Open-Meteo public API.
+- Data is fetched from the Open-Meteo public API.
 
-This project is intended as a learning and portfolio exercise for Go.
+- This project is intended as a learning and portfolio exercise for Go.
